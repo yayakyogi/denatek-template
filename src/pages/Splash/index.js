@@ -1,8 +1,24 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, Text, View, Image, StatusBar} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  StatusBar,
+  useColorScheme,
+} from 'react-native';
+
 import {ILApp} from '../../assets';
+import {colors, fonts} from '../../utils';
 
 const Splash = ({navigation}) => {
+  const isDarkMode = useColorScheme() === 'dark';
+  const darkTheme = {
+    backgroundColor: isDarkMode
+      ? colors.darkMode.background
+      : colors.lightMode.background,
+    color: isDarkMode ? colors.darkMode.text : colors.LightMode.text,
+  };
   useEffect(() => {
     setTimeout(() => {
       navigation.replace('Login');
@@ -11,10 +27,14 @@ const Splash = ({navigation}) => {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <StatusBar backgroundColor="#ffffff" />
+    <View style={[styles.container, darkTheme]}>
+      <StatusBar
+        backgroundColor={
+          isDarkMode ? colors.darkMode.statusbar : colors.lightMode.statusbar
+        }
+      />
       <Image source={ILApp} style={styles.img} />
-      <Text style={styles.title}>DENATEK</Text>
+      <Text style={[styles.title, darkTheme]}>Denatek</Text>
     </View>
   );
 };
@@ -33,5 +53,5 @@ const styles = StyleSheet.create({
     height: 100,
     marginBottom: 20,
   },
-  title: {fontSize: 20, fontWeight: '300'},
+  title: {fontSize: 20, fontFamily: fonts.primary.SMB},
 });
