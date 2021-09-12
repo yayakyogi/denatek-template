@@ -6,7 +6,7 @@ const Stack = createNativeStackNavigator();
 
 const Router = () => {
   return (
-    <Stack.Navigator initialRouteName="Splash">
+    <Stack.Navigator initialRouteName="Login">
       {/* halaman splash screen */}
       <Stack.Screen
         name="Splash"
@@ -14,7 +14,11 @@ const Router = () => {
         options={{headerShown: false}}
       />
       {/* halaman login */}
-      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 };
