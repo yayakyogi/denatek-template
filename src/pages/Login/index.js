@@ -11,11 +11,13 @@ import {
 
 import {ILApp} from '../../assets';
 import {fonts, colors} from '../../utils';
-import {Button, TextInput, Gap, ButtonText} from '../../components';
+import {Button, TextInput, Gap, ButtonText, ButtonFlex} from '../../components';
 
-const Login = () => {
+const Login = ({navigation}) => {
   const [showPassword, setShowPassword] = useState(false); // state untuk melihat password
   const isDarkMode = useColorScheme() === 'dark'; // variabel untuk mengecek apakah tema hp darkMode atau tidak
+  const [isCanvaser, setIsCanvaser] = useState(true); // state untuk role canvaser
+  const [isMarketer, setIsMarketer] = useState(false); // state untuk role marketer
 
   // variale untuk menset warna ketika tema dalam mode darkMode
   const darkTheme = {
@@ -42,7 +44,22 @@ const Login = () => {
         contentContainerStyle={styles.scrollview}>
         {/* logo */}
         <Image source={ILApp} style={styles.img} />
-        <Text style={[styles.title, darkTheme]}>Masuk dan mulai bekerja</Text>
+        <Text style={[styles.title, darkTheme]}>Masuk sebagai</Text>
+        <ButtonFlex
+          title1="Canvaser"
+          title2="Marketer"
+          btn1Active={isCanvaser}
+          btn2Active={isMarketer}
+          onPress1={() => {
+            setIsMarketer(false);
+            setIsCanvaser(true);
+          }}
+          onPress2={() => {
+            setIsCanvaser(false);
+            setIsMarketer(true);
+          }}
+          bgDark={darkTheme}
+        />
         {/* form login email*/}
         <TextInput
           label="Email"
@@ -68,7 +85,8 @@ const Login = () => {
           />
         </View>
         <Gap height={20} />
-        <Button title="LOGIN" />
+        <Button title="LOGIN" onPress={() => navigation.navigate('MainApp')} />
+        <Gap height={20} />
       </ScrollView>
     </View>
   );
@@ -81,10 +99,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 32,
-    paddingVertical: 25,
+    paddingTop: 25,
   },
-  img: {width: 100, height: 100},
-  title: {fontSize: 20, fontFamily: fonts.primary.SMB, marginVertical: 40},
+  img: {width: 80, height: 80},
+  title: {
+    fontSize: 20,
+    fontFamily: fonts.primary.SMB,
+    marginVertical: 30,
+  },
   pw: {position: 'relative'},
   showpassword: {position: 'absolute', right: 10, bottom: -25},
   showpasswordtext: {fontSize: 12, fontFamily: fonts.primary.MED},
