@@ -27,6 +27,10 @@ export const colors = {
       background: mainColors.white,
       text: mainColors.dark,
     },
+    dark: {
+      background: mainColors.dark1,
+      text: mainColors.grey2,
+    },
   },
   // warna untuk pesan atau notifikasi
   message: {
@@ -44,6 +48,8 @@ export const colors = {
     primary: mainColors.dark1,
     secondary: mainColors.gray1,
     danger: mainColors.red1,
+    normal: mainColors.white,
+    inActive: mainColors.gray2,
   },
   // warna untuk darkMode
   darkMode: {
