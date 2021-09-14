@@ -3,6 +3,8 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 
 import TabIcon from './Icon';
 
+import {colors} from '../../../utils';
+
 const BottomTab = ({state, descriptors, navigation}) => {
   return (
     <View style={styles.container}>
@@ -43,7 +45,8 @@ const BottomTab = ({state, descriptors, navigation}) => {
             isFocused={isFocused}
             onPress={onPress}
             onLongPress={onLongPress}
-            label={label}></TabIcon>
+            label={label}
+          />
         );
       })}
     </View>
@@ -53,5 +56,11 @@ const BottomTab = ({state, descriptors, navigation}) => {
 export default BottomTab;
 
 const styles = StyleSheet.create({
-  container: {flexDirection: 'row'},
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: colors.primary,
+    height: 60,
+  },
 });

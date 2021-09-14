@@ -7,6 +7,7 @@ import {
   ICProfileActive,
   ICProfileInActive,
 } from '../../../assets';
+import {colors, fonts} from '../../../utils';
 
 const Icon = ({label, onPress, onLongPress, isFocused}) => {
   const Icons = () => {
@@ -20,9 +21,9 @@ const Icon = ({label, onPress, onLongPress, isFocused}) => {
 
   return (
     <TouchableOpacity onPress={onPress} onLongPress={onLongPress}>
-      <View>
+      <View style={styles.container}>
         <Icons />
-        <Text>{label}</Text>
+        <Text style={styles.textIcon(isFocused)}>{label}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -30,4 +31,14 @@ const Icon = ({label, onPress, onLongPress, isFocused}) => {
 
 export default Icon;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+  },
+  textIcon: isFocused => ({
+    fontSize: 12,
+    fontFamily: isFocused ? fonts.primary.SMB : fonts.primary.REG,
+    color: isFocused ? colors.text.normal : colors.text.secondary,
+    marginTop: 3,
+  }),
+});
