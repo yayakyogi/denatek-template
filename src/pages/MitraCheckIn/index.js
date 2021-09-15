@@ -1,16 +1,21 @@
 import React from 'react';
-import {StyleSheet, Text, View, useColorScheme} from 'react-native';
+import {StyleSheet, Text, View, useColorScheme, StatusBar} from 'react-native';
 
-import {colorScheme} from '../../utils';
+import {colors} from '../../utils';
 const MitraCheckIn = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const darkMode = {
     backgroundColor: isDarkMode
-      ? colorScheme.dark.background
-      : colorScheme.light.background,
+      ? colors.dark.background
+      : colors.light.background,
   };
   return (
     <View style={[styles.container, darkMode]}>
+      <StatusBar
+        backgroundColor={
+          isDarkMode ? colors.dark.statusbar : colors.light.statusbar
+        }
+      />
       <Text>MitraCheckIn</Text>
     </View>
   );

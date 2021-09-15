@@ -8,9 +8,9 @@ const MitraProfile = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const darkMode = {
     backgroundColor: isDarkMode
-      ? colorScheme.dark.background
-      : colorScheme.light.background,
-    color: isDarkMode ? colorScheme.dark.text : colorScheme.light.text,
+      ? colors.dark.background
+      : colors.light.background,
+    color: isDarkMode ? colors.dark.text : colors.light.text,
   };
   return (
     <View style={styles.container}>

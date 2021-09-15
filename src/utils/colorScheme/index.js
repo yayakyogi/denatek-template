@@ -2,13 +2,15 @@ import {colors} from '../colors';
 
 export const colorScheme = {
   dark: {
-    background: colors.darkMode.background,
-    text: colors.darkMode.text,
-    border: colors.darkMode.border,
+    background: colors.dark.background,
+    text: colors.dark.text,
+    border: colors.dark.border,
+    statusbar: colors.dark.statusbar,
   },
   light: {
-    background: colors.lightMode.background,
-    text: colors.lightMode.text,
-    border: colors.lightMode.border,
+    background: colors.light.background,
+    text: colors.light.text,
+    border: colors.light.border,
+    statusbar: colors.light.statusbar,
   },
 };

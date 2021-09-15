@@ -9,16 +9,17 @@ import {
 } from 'react-native';
 
 import {ILApp} from '../../assets';
-import {colors, fonts, colorScheme} from '../../utils';
+import {colors, fonts} from '../../utils';
 
 const Splash = ({navigation}) => {
   const isDarkMode = useColorScheme() === 'dark';
   const darkTheme = {
     backgroundColor: isDarkMode
-      ? colorScheme.dark.background
-      : colorScheme.light.background,
-    color: isDarkMode ? colorScheme.dark.text : colorScheme.Light.text,
+      ? colors.dark.background
+      : colors.light.background,
+    color: isDarkMode ? colors.dark.text : colors.Light.text,
   };
+  console.log(colors.dark.background);
   useEffect(() => {
     setTimeout(() => {
       navigation.replace('Login');
@@ -29,9 +30,7 @@ const Splash = ({navigation}) => {
   return (
     <View style={[styles.container, darkTheme]}>
       <StatusBar
-        backgroundColor={
-          isDarkMode ? colors.darkMode.statusbar : colors.lightMode.statusbar
-        }
+        backgroundColor={isDarkMode ? colors.secondary : colors.light.statusbar}
       />
       <Image source={ILApp} style={styles.img} />
       <Text style={[styles.title, darkTheme]}>Denatek</Text>

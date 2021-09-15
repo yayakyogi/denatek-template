@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, ScrollView, useColorScheme} from 'react-native';
 
-import {colors, colorScheme} from '../../utils';
+import {colors} from '../../utils';
 import {MenuDashboard} from '../../components';
 
 const MitraDashboard = ({navigation}) => {
@@ -9,9 +9,9 @@ const MitraDashboard = ({navigation}) => {
   const isDarkMode = useColorScheme() === 'dark';
   const darkMode = {
     backgroundColor: isDarkMode
-      ? colorScheme.dark.background
-      : colorScheme.light.background,
-    color: isDarkMode ? colorScheme.dark.text : colorScheme.light.text,
+      ? colors.dark.background
+      : colors.light.background,
+    color: isDarkMode ? colors.dark.text : colors.light.text,
   };
 
   return (

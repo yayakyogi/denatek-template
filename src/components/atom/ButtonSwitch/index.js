@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     width: '100%',
     borderRadius: 10,
     borderWidth: isActive ? 0 : 1,
-    borderColor: colors.lightMode.border,
+    borderColor: colors.light.border,
   }),
   text: isActive => ({
     fontSize: 15,

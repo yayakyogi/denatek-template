@@ -9,6 +9,7 @@ const mainColors = {
   gray1: '#7D8797',
   gray2: '#E9E9E9',
   white: '#FFFFFF',
+  black: '#000000',
 };
 
 export const colors = {
@@ -57,14 +58,14 @@ export const colors = {
     inActive: mainColors.gray2,
   },
   // warna untuk darkMode
-  darkMode: {
+  dark: {
     background: mainColors.dark1,
     text: mainColors.green1,
     border: mainColors.green1,
-    statusbar: mainColors.dark1,
+    statusbar: mainColors.black,
   },
   // warna untuk lightMode
-  lightMode: {
+  light: {
     background: mainColors.white,
     label: mainColors.gray1,
     text: mainColors.dark1,

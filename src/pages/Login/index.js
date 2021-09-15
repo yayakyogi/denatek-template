@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import {ILApp} from '../../assets';
-import {fonts, colors, colorScheme} from '../../utils';
+import {fonts, colors} from '../../utils';
 import {Button, TextInput, Gap, ButtonText, ButtonFlex} from '../../components';
 
 const Login = ({navigation}) => {
@@ -22,15 +22,13 @@ const Login = ({navigation}) => {
   // variale untuk menset warna ketika tema dalam mode darkMode
   const darkTheme = {
     backgroundColor: isDarkMode
-      ? colorScheme.dark.background
-      : colorScheme.light.background,
-    color: isDarkMode ? colorScheme.dark.text : colorScheme.light.text,
-    borderColor: isDarkMode
-      ? colorScheme.dark.border
-      : colorScheme.light.border,
+      ? colors.dark.background
+      : colors.light.background,
+    color: isDarkMode ? colors.dark.text : colors.light.text,
+    borderColor: isDarkMode ? colors.dark.border : colors.light.border,
   };
   const labelDark = {
-    color: isDarkMode ? colors.darkMode.text : colors.lightMode.label,
+    color: isDarkMode ? colors.dark.text : colors.light.label,
   };
 
   return (
@@ -38,7 +36,7 @@ const Login = ({navigation}) => {
       {/* beri warna statusbar */}
       <StatusBar
         backgroundColor={
-          isDarkMode ? colors.darkMode.statusbar : colors.lightMode.statusbar
+          isDarkMode ? colors.dark.statusbar : colors.light.statusbar
         }
       />
       <ScrollView
