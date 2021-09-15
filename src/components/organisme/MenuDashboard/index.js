@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
 import {TitleDashboard} from '../../atom';
 import {MenuFlex} from '../../molekul';
@@ -66,5 +66,3 @@ const MenuDashboard = ({
 };
 
 export default MenuDashboard;
-
-const styles = StyleSheet.create({});
