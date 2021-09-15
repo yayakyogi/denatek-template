@@ -2,15 +2,15 @@ import React from 'react';
 import {StyleSheet, View, useColorScheme} from 'react-native';
 
 import {MenuProfile} from '../../components';
-import {colors} from '../../utils';
+import {colors, colorScheme} from '../../utils';
 
 const MitraProfile = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const darkMode = {
     backgroundColor: isDarkMode
-      ? colors.darkMode.background
-      : colors.lightMode.background,
-    color: isDarkMode ? colors.darkMode.text : colors.lightMode.text,
+      ? colorScheme.dark.background
+      : colorScheme.light.background,
+    color: isDarkMode ? colorScheme.dark.text : colorScheme.light.text,
   };
   return (
     <View style={styles.container}>

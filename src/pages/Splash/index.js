@@ -9,15 +9,15 @@ import {
 } from 'react-native';
 
 import {ILApp} from '../../assets';
-import {colors, fonts} from '../../utils';
+import {colors, fonts, colorScheme} from '../../utils';
 
 const Splash = ({navigation}) => {
   const isDarkMode = useColorScheme() === 'dark';
   const darkTheme = {
     backgroundColor: isDarkMode
-      ? colors.darkMode.background
-      : colors.lightMode.background,
-    color: isDarkMode ? colors.darkMode.text : colors.LightMode.text,
+      ? colorScheme.dark.background
+      : colorScheme.light.background,
+    color: isDarkMode ? colorScheme.dark.text : colorScheme.Light.text,
   };
   useEffect(() => {
     setTimeout(() => {

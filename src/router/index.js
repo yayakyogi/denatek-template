@@ -3,9 +3,15 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 // halaman
-import {Splash, Login, MitraDashboard, MitraProfile} from '../pages';
-// component
+import {
+  Splash,
+  Login,
+  MitraDashboard,
+  MitraProfile,
+  MitraCheckIn,
+} from '../pages';
 import {BottomTab} from '../components';
+import {colors, fonts} from '../utils';
 
 // variabel untuk menentukan route
 const Stack = createNativeStackNavigator();
@@ -30,7 +36,7 @@ const MainApp = () => {
 
 const Router = () => {
   return (
-    <Stack.Navigator initialRouteName="Login">
+    <Stack.Navigator initialRouteName="Splash">
       {/* halaman splash screen */}
       <Stack.Screen
         name="Splash"
@@ -43,10 +49,22 @@ const Router = () => {
         component={Login}
         options={{headerShown: false}}
       />
+      {/* halaman dashboard */}
       <Stack.Screen
         name="MainApp"
         component={MainApp}
         options={{headerShown: false}}
+      />
+      {/* halaman checkIn */}
+      <Stack.Screen
+        name="MitraCheckIn"
+        component={MitraCheckIn}
+        options={{
+          title: 'Absen Pagi',
+          headerStyle: {backgrounColor: colors.secondary},
+          headerTintColor: colors.white,
+          headerTitleStyle: {fontFamily: fonts.primary.SMB},
+        }}
       />
     </Stack.Navigator>
   );

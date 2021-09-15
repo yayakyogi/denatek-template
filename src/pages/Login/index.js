@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import {ILApp} from '../../assets';
-import {fonts, colors} from '../../utils';
+import {fonts, colors, colorScheme} from '../../utils';
 import {Button, TextInput, Gap, ButtonText, ButtonFlex} from '../../components';
 
 const Login = ({navigation}) => {
@@ -22,10 +22,12 @@ const Login = ({navigation}) => {
   // variale untuk menset warna ketika tema dalam mode darkMode
   const darkTheme = {
     backgroundColor: isDarkMode
-      ? colors.darkMode.background
-      : colors.lightMode.background,
-    color: isDarkMode ? colors.darkMode.text : colors.lightMode.text,
-    borderColor: isDarkMode ? colors.darkMode.border : colors.lightMode.border,
+      ? colorScheme.dark.background
+      : colorScheme.light.background,
+    color: isDarkMode ? colorScheme.dark.text : colorScheme.light.text,
+    borderColor: isDarkMode
+      ? colorScheme.dark.border
+      : colorScheme.light.border,
   };
   const labelDark = {
     color: isDarkMode ? colors.darkMode.text : colors.lightMode.label,

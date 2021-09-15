@@ -1,17 +1,17 @@
 import React from 'react';
 import {StyleSheet, View, ScrollView, useColorScheme} from 'react-native';
 
-import {colors} from '../../utils';
+import {colors, colorScheme} from '../../utils';
 import {MenuDashboard} from '../../components';
 
-const MitraDashboard = () => {
+const MitraDashboard = ({navigation}) => {
   // set darkMode
   const isDarkMode = useColorScheme() === 'dark';
   const darkMode = {
     backgroundColor: isDarkMode
-      ? colors.darkMode.background
-      : colors.lightMode.background,
-    color: isDarkMode ? colors.darkMode.text : colors.lightMode.text,
+      ? colorScheme.dark.background
+      : colorScheme.light.background,
+    color: isDarkMode ? colorScheme.dark.text : colorScheme.light.text,
   };
 
   return (
@@ -25,7 +25,9 @@ const MitraDashboard = () => {
             darkMode={darkMode} // props untuk merubah background dan warna text saat darkMode
             title="Dashboard Marketer"
             id="anJAk909a"
-            onPressCheckIn={() => {}} // tombol checkin atau absen pagi
+            onPressCheckIn={() => {
+              navigation.navigate('MitraCheckIn'); // tombol checkin atau absen pagi
+            }}
             onPressCheckOut={() => {}} // tombol checkout atau absen pulang
             onPressLaporan={() => {}} // tombol laporan
             onPressStatus={() => {}} // tombol set status
