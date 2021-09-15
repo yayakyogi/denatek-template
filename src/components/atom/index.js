@@ -5,6 +5,7 @@ import ButtonText from './ButtonText';
 import ButtonSwitch from './ButtonSwitch';
 import ButtonMenu from './ButtonMenu';
 import TitleDashboard from './TitleDashboard';
+import TitleProfile from './TitleProfile';
 
 export {
   Button,
@@ -14,4 +15,5 @@ export {
   ButtonSwitch,
   ButtonMenu,
   TitleDashboard,
+  TitleProfile,
 };
