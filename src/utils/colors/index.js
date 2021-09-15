@@ -2,6 +2,7 @@
 const mainColors = {
   green1: '#0BCAD4',
   green2: '#0AA8B0',
+  green3: '#EDFCFD',
   dark1: '#112340',
   red1: '#E06379',
   yellow1: '#F8B459',
@@ -30,6 +31,10 @@ export const colors = {
     dark: {
       background: mainColors.dark1,
       text: mainColors.grey2,
+    },
+    menu: {
+      background: mainColors.green3,
+      text: mainColors.green1,
     },
   },
   // warna untuk pesan atau notifikasi

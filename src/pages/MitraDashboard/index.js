@@ -1,23 +1,37 @@
 import React from 'react';
-import {StyleSheet, Text, View, ScrollView, useColorScheme} from 'react-native';
+import {StyleSheet, View, ScrollView, useColorScheme} from 'react-native';
 
-import {colors, fonts} from '../../utils';
-import {Gap} from '../../components';
+import {colors} from '../../utils';
+import {MenuDashboard} from '../../components';
 
 const MitraDashboard = () => {
+  // set darkMode
   const isDarkMode = useColorScheme() === 'dark';
   const darkMode = {
     backgroundColor: isDarkMode
       ? colors.darkMode.background
       : colors.lightMode.background,
+    color: isDarkMode ? colors.darkMode.text : colors.lightMode.text,
   };
+
   return (
     <View style={styles.container}>
       <View style={[styles.wrapper, darkMode]}>
         <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainer={styles.scrollview}>
-          <Text>Dashboard</Text>
+          <MenuDashboard
+            isDarkMode={isDarkMode} // props untuk menentukan apakah tema hp dark atau light untuk mengganti icon detail kunjungan
+            darkMode={darkMode} // props untuk merubah background dan warna text saat darkMode
+            title="Dashboard Marketer"
+            id="anJAk909a"
+            onPressCheckIn={() => {}} // tombol checkin atau absen pagi
+            onPressCheckOut={() => {}} // tombol checkout atau absen pulang
+            onPressLaporan={() => {}} // tombol laporan
+            onPressStatus={() => {}} // tombol set status
+            onPressDetail={() => {}} // tombol detail kunjungan
+            onPressAddMitra={() => {}} // tombol menambah mitra
+          />
         </ScrollView>
       </View>
     </View>
@@ -27,9 +41,15 @@ const MitraDashboard = () => {
 export default MitraDashboard;
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: colors.primary},
+  scrollview: {flexGrow: 1},
+  container: {
+    flex: 1,
+    backgroundColor: colors.primary,
+  },
   wrapper: {
     flex: 1,
+    paddingVertical: 25,
+    paddingHorizontal: 32,
     backgroundColor: colors.normal,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,

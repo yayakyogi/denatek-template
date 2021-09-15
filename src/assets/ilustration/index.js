@@ -3,6 +3,7 @@ import ILCheckIn from './checkin.png';
 import ILCheckOut from './checkout.png';
 import ILSetStatus from './set-status.png';
 import ILDetailKunjungan from './detail-kunjungan.png';
+import ILDetailKunjunganDark from './detail-kunjungan-dark.png';
 import ILKirimLaporan from './kirim-laporan.png';
 import ILMitraBaru from './mitra-baru.png';
 import ILUserDefault from './user.png';
@@ -30,4 +31,5 @@ export {
   ILGetGalery,
   ILLogout,
   ILApp,
+  ILDetailKunjunganDark,
 };
