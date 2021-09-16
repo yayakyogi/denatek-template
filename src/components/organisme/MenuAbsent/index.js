@@ -1,12 +1,19 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
-import {Announce} from '../../atom';
+import {Announce, Button} from '../../atom';
+import {PhotoAbsent} from '../../molekul';
 
-const Absent = ({darkMode}) => {
+const Absent = ({darkMode, image, onPressAdd, onPressDel, onSave}) => {
   return (
     <View style={styles.container}>
       <Announce />
+      <PhotoAbsent
+        image={image}
+        onPressAdd={onPressAdd}
+        onPressDel={onPressDel}
+      />
+      <Button title="Simpan" onPress={onSave} />
     </View>
   );
 };
@@ -14,5 +21,5 @@ const Absent = ({darkMode}) => {
 export default Absent;
 
 const styles = StyleSheet.create({
-  container: {paddingVertical: 25, paddingHorizontal: 32},
+  container: {flex: 1, paddingVertical: 25, paddingHorizontal: 32},
 });

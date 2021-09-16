@@ -35,7 +35,7 @@ export default PhotoAbsent;
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 40,
+    marginTop: 40,
     alignItems: 'center',
   },
   wrapper: {
