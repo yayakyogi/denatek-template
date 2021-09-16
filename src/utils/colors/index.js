@@ -70,6 +70,6 @@ export const colors = {
     label: mainColors.gray1,
     text: mainColors.dark1,
     border: mainColors.gray2,
-    statusbar: mainColors.gray1,
+    statusbar: mainColors.dark1,
   },
 };
