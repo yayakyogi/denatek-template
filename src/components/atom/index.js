@@ -6,6 +6,7 @@ import ButtonSwitch from './ButtonSwitch';
 import ButtonMenu from './ButtonMenu';
 import TitleDashboard from './TitleDashboard';
 import TitleProfile from './TitleProfile';
+import Announce from './Announce';
 
 export {
   Button,
@@ -16,4 +17,5 @@ export {
   ButtonMenu,
   TitleDashboard,
   TitleProfile,
+  Announce,
 };

@@ -2,6 +2,8 @@ import React from 'react';
 import {StyleSheet, Text, View, useColorScheme, StatusBar} from 'react-native';
 
 import {colors} from '../../utils';
+import {MenuAbsent} from '../../components';
+
 const MitraCheckIn = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const darkMode = {
@@ -16,7 +18,7 @@ const MitraCheckIn = () => {
           isDarkMode ? colors.dark.statusbar : colors.light.statusbar
         }
       />
-      <Text>MitraCheckIn</Text>
+      <MenuAbsent darkMode={darkMode} />
     </View>
   );
 };
