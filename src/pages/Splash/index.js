@@ -17,9 +17,8 @@ const Splash = ({navigation}) => {
     backgroundColor: isDarkMode
       ? colors.dark.background
       : colors.light.background,
-    color: isDarkMode ? colors.dark.text : colors.Light.text,
+    color: isDarkMode ? colors.dark.text : colors.light.text,
   };
-  console.log(colors.dark.background);
   useEffect(() => {
     setTimeout(() => {
       navigation.replace('Login');
@@ -30,7 +29,7 @@ const Splash = ({navigation}) => {
   return (
     <View style={[styles.container, darkTheme]}>
       <StatusBar
-        backgroundColor={isDarkMode ? colors.secondary : colors.light.statusbar}
+        backgroundColor={isDarkMode ? colors.secondary : colors.normal}
       />
       <Image source={ILApp} style={styles.img} />
       <Text style={[styles.title, darkTheme]}>Denatek</Text>
