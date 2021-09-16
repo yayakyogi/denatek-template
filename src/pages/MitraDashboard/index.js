@@ -28,7 +28,9 @@ const MitraDashboard = ({navigation}) => {
             onPressCheckIn={() => {
               navigation.navigate('MitraCheckIn'); // tombol checkin atau absen pagi
             }}
-            onPressCheckOut={() => {}} // tombol checkout atau absen pulang
+            onPressCheckOut={() => {
+              navigation.navigate('MitraCheckOut'); // tombol checkout atau absen pulang
+            }}
             onPressLaporan={() => {}} // tombol laporan
             onPressStatus={() => {}} // tombol set status
             onPressDetail={() => {}} // tombol detail kunjungan

@@ -1,10 +1,11 @@
-import React from 'react';
-import {StyleSheet, Text, View, useColorScheme, StatusBar} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, View, useColorScheme, StatusBar} from 'react-native';
 
 import {colors} from '../../utils';
 import {MenuAbsent} from '../../components';
 
 const MitraCheckIn = () => {
+  const [image, setImage] = useState('');
   const isDarkMode = useColorScheme() === 'dark';
   const darkMode = {
     backgroundColor: isDarkMode
@@ -18,7 +19,13 @@ const MitraCheckIn = () => {
           isDarkMode ? colors.dark.statusbar : colors.light.statusbar
         }
       />
-      <MenuAbsent darkMode={darkMode} />
+      <MenuAbsent
+        darkMode={darkMode}
+        image={image}
+        onPressAdd={() => {}}
+        onPressDel={() => {}}
+        onSave={() => {}}
+      />
     </View>
   );
 };
