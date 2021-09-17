@@ -72,7 +72,6 @@ const Login = ({navigation}) => {
           {/* form login password*/}
           <TextInput
             label="Password"
-            labelDark={labelDark}
             darkTheme={darkTheme}
             placeholder="Masukkan password anda"
             // cek apakah showPassword bernilai true? jikak YA maka ubah secureTextEntry menjadi false agar password terlihat
