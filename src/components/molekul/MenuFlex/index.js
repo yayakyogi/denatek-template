@@ -14,17 +14,30 @@ const MenuFlex = ({
   return (
     <>
       <View style={styles.container}>
-        <ButtonMenu
-          title={titleLeft}
-          icon={iconLeft}
-          onPress={onPressMenuLeft}
-        />
-        <Gap width={20} />
-        <ButtonMenu
-          title={titleRight}
-          icon={iconRight}
-          onPress={onPressMenuRight}
-        />
+        {titleRight ? (
+          <>
+            <ButtonMenu
+              title={titleLeft}
+              icon={iconLeft}
+              onPress={onPressMenuLeft}
+            />
+            <Gap width={20} />
+            <ButtonMenu
+              title={titleRight}
+              icon={iconRight}
+              onPress={onPressMenuRight}
+            />
+          </>
+        ) : (
+          <>
+            <ButtonMenu
+              title={titleLeft}
+              icon={iconLeft}
+              onPress={onPressMenuLeft}
+            />
+            <Gap width={170} />
+          </>
+        )}
       </View>
       <Gap height={20} />
     </>

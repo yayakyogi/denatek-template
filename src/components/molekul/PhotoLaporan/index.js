@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   photoNull: {
     borderWidth: 1,
     borderColor: colors.primary,
-    width: 180,
+    width: 160,
     height: 150,
     borderRadius: 20,
     alignItems: 'center',

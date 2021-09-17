@@ -11,6 +11,7 @@ import {
   MitraCheckIn,
   MitraCheckOut,
   MitraVisitDetail,
+  MitraSendReport,
 } from '../pages';
 import {BottomTab} from '../components';
 import {colors, fonts} from '../utils';
@@ -85,6 +86,17 @@ const Router = () => {
         component={MitraVisitDetail}
         options={{
           title: 'Detail Kunjungan',
+          headerStyle: {backgroundColor: colors.secondary},
+          headerTintColor: colors.normal,
+          headerTitleStyle: {fontFamily: fonts.primary.SMB},
+        }}
+      />
+      {/* halaman mitraSendReport */}
+      <Stack.Screen
+        name="MitraSendReport"
+        component={MitraSendReport}
+        options={{
+          title: 'Kirim Laporan',
           headerStyle: {backgroundColor: colors.secondary},
           headerTintColor: colors.normal,
           headerTitleStyle: {fontFamily: fonts.primary.SMB},
