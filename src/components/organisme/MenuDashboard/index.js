@@ -44,7 +44,7 @@ const MenuDashboard = ({
         // menu sebelah kiri
         titleLeft="Detail Kunjungan"
         iconLeft={isDarkMode ? ILDetailKunjunganDark : ILDetailKunjungan}
-        onPressMenuLeft={onPressStatus}
+        onPressMenuLeft={onPressDetail}
         // menu sebelah kanan
         titleRight="Kirim Laporan"
         iconRight={ILKirimLaporan}
