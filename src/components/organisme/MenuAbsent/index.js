@@ -7,7 +7,7 @@ import {PhotoAbsent} from '../../molekul';
 const Absent = ({darkMode, image, onPressAdd, onPressDel, onSave}) => {
   return (
     <View style={styles.container}>
-      <Announce />
+      <Announce message="Upload foto anda untuk melakukan absensi harian" />
       <PhotoAbsent
         image={image}
         onPressAdd={onPressAdd}
