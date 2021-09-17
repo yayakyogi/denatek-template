@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 
-import {Announce, Button} from '../../atom';
+import {Announce, Button, Gap} from '../../atom';
 import {PhotoAbsent} from '../../molekul';
 
 const Absent = ({darkMode, image, onPressAdd, onPressDel, onSave}) => {
@@ -13,6 +13,7 @@ const Absent = ({darkMode, image, onPressAdd, onPressDel, onSave}) => {
         onPressAdd={onPressAdd}
         onPressDel={onPressDel}
       />
+      <Gap height={20} />
       <Button title="Simpan" onPress={onSave} />
     </View>
   );
