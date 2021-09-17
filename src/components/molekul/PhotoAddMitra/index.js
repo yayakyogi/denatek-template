@@ -1,15 +1,20 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 
 import {colors, fonts} from '../../../utils';
 
-const PhotoAddMitra = ({image, label, darkMode, onPress}) => {
+const PhotoAddMitra = ({image, label, darkMode, onPress, onDelete}) => {
   return (
     <>
       <Text style={[styles.label, darkMode]}>{label}</Text>
       {image ? (
         // jika ada gambar tampilkan gambar tersebut
-        <></>
+        <View style={styles.viewImage}>
+          <Image source={image} style={styles.image} />
+          <TouchableOpacity onPress={onDelete} style={styles.delete}>
+            <Text style={styles.deletePhoto}>Hapus foto</Text>
+          </TouchableOpacity>
+        </View>
       ) : (
         // jika tidak tampilkan tombol untuk mengupload gambar
         <TouchableOpacity onPress={onPress} style={[styles.button, darkMode]}>
@@ -17,7 +22,7 @@ const PhotoAddMitra = ({image, label, darkMode, onPress}) => {
             <Text style={styles.text(darkMode)}>Ambil foto</Text>
           </View>
           <Text style={[styles.msg, darkMode]}>
-            *Belum ada foto yang dipilih
+            *Belum ada foto yang diambil
           </Text>
         </TouchableOpacity>
       )}
@@ -57,4 +62,18 @@ const styles = StyleSheet.create({
     color: darkMode ? colors.text.normal : colors.text.primary,
   }),
   msg: {fontSize: 10, fontFamily: fonts.primary.REG},
+  // styles images
+  viewImage: {alignItems: 'center'},
+  image: {width: 250, height: 150, marginVertical: 10, borderRadius: 5},
+  delete: {
+    backgroundColor: colors.danger,
+    paddingVertical: 2,
+    paddingHorizontal: 10,
+    borderRadius: 5,
+  },
+  deletePhoto: {
+    fontSize: 12,
+    fontFamily: fonts.primary.SMB,
+    color: colors.text.normal,
+  },
 });

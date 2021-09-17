@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View, useColorScheme, ScrollView} from 'react-native';
 
 import {colors} from '../../utils';
@@ -9,8 +9,11 @@ import {
   Button,
   PhotoAddMitra,
 } from '../../components';
+import {DummyPantai} from '../../assets';
 
 const CanvaserAddMitra = () => {
+  const [imageOut, setImageOut] = useState(DummyPantai); // state untuk menampung foto tampak luar
+  const [imageIn, setImageIn] = useState(''); // state untuk menampung foto tampak dalam
   // variabel untuk menentukan apakah tema hp dalam mode darkMode
   const isDarkMode = useColorScheme() === 'dark';
   const darkMode = {
@@ -65,11 +68,23 @@ const CanvaserAddMitra = () => {
           <Gap height={margin} />
 
           {/* tambah foto tampak luar */}
-          <PhotoAddMitra darkMode={darkMode} label="Foto Tampak Luar" />
+          <PhotoAddMitra
+            darkMode={darkMode}
+            label="Foto Tampak Luar"
+            image={imageOut}
+            onPress={() => {}}
+            onDelete={() => {}}
+          />
           <Gap height={margin} />
 
           {/* tambah foto tampak dalam */}
-          <PhotoAddMitra darkMode={darkMode} label="Foto Tampak Dalam" />
+          <PhotoAddMitra
+            darkMode={darkMode}
+            label="Foto Tampak Dalam"
+            image={imageIn}
+            onPress={() => {}}
+            onDelete={() => {}}
+          />
           <Gap height={20} />
         </View>
       </ScrollView>
