@@ -1,12 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text, View, TextInput as InputText} from 'react-native';
+import {StyleSheet, Text, TextInput as InputText} from 'react-native';
 
-import {colors, fonts} from '../../../utils';
+import {fonts} from '../../../utils';
 
-const TextInput = ({label, labelDark, darkTheme, ...props}) => {
+const TextInput = ({label, darkTheme, ...props}) => {
   return (
     <>
-      <Text style={[styles.label, labelDark]}>{label}</Text>
+      <Text style={[styles.label, darkTheme]}>{label}</Text>
       <InputText {...props} style={[styles.textinput, darkTheme]} />
     </>
   );
