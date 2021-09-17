@@ -46,10 +46,13 @@ const Login = ({navigation}) => {
         <Image source={ILApp} style={styles.img} />
         <Text style={[styles.title, darkMode]}>Masuk sebagai</Text>
         <ButtonFlex
+          // nama button
           title1="Canvaser"
           title2="Marketer"
+          // props untuk mengecek button mana yg aktif
           btn1Active={isCanvaser}
           btn2Active={isMarketer}
+          // props untuk fungsi tombol
           onPress1={() => {
             setIsMarketer(false);
             setIsCanvaser(true);
@@ -58,6 +61,7 @@ const Login = ({navigation}) => {
             setIsCanvaser(false);
             setIsMarketer(true);
           }}
+          // props darkMode
           bgDark={darkMode}
         />
         <Gap height={20} />
@@ -84,9 +88,8 @@ const Login = ({navigation}) => {
             text={showPassword ? 'Sembunyikan password' : 'Tampilkan password'}
           />
         </View>
-        <Gap height={20} />
+        <Gap height={40} />
         <Button title="LOGIN" onPress={() => navigation.navigate('MainApp')} />
-        <Gap height={20} />
       </ScrollView>
     </View>
   );
