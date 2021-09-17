@@ -33,7 +33,9 @@ const MitraDashboard = ({navigation}) => {
             }}
             onPressLaporan={() => {}} // tombol laporan
             onPressStatus={() => {}} // tombol set status
-            onPressDetail={() => {}} // tombol detail kunjungan
+            onPressDetail={() => {
+              navigation.navigate('MitraVisitDetail'); // tombol detail kunjungan
+            }}
             onPressAddMitra={() => {}} // tombol menambah mitra
           />
         </ScrollView>
