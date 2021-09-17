@@ -10,8 +10,9 @@ import {
   MitraProfile,
   MitraCheckIn,
   MitraCheckOut,
-  MitraVisitDetail,
   MitraSendReport,
+  CanvaserVisitDetail,
+  CanvaserAddMitra,
 } from '../pages';
 import {BottomTab} from '../components';
 import {colors, fonts} from '../utils';
@@ -39,7 +40,7 @@ const MainApp = () => {
 
 const Router = () => {
   return (
-    <Stack.Navigator initialRouteName="Splash">
+    <Stack.Navigator initialRouteName="MainApp">
       {/* halaman splash screen */}
       <Stack.Screen
         name="Splash"
@@ -80,10 +81,21 @@ const Router = () => {
           headerTitleStyle: {fontFamily: fonts.primary.SMB},
         }}
       />
-      {/* halaman mitraVisitDetail */}
+      {/* halaman mitraSendReport */}
       <Stack.Screen
-        name="MitraVisitDetail"
-        component={MitraVisitDetail}
+        name="MitraSendReport"
+        component={MitraSendReport}
+        options={{
+          title: 'Kirim Laporan',
+          headerStyle: {backgroundColor: colors.secondary},
+          headerTintColor: colors.normal,
+          headerTitleStyle: {fontFamily: fonts.primary.SMB},
+        }}
+      />
+      {/* halaman CanvaserVisitDetail */}
+      <Stack.Screen
+        name="CanvaserVisitDetail"
+        component={CanvaserVisitDetail}
         options={{
           title: 'Detail Kunjungan',
           headerStyle: {backgroundColor: colors.secondary},
@@ -91,12 +103,12 @@ const Router = () => {
           headerTitleStyle: {fontFamily: fonts.primary.SMB},
         }}
       />
-      {/* halaman mitraSendReport */}
+      {/* halaman CanvaserAddMitra */}
       <Stack.Screen
-        name="MitraSendReport"
-        component={MitraSendReport}
+        name="CanvaserAddMitra"
+        component={CanvaserAddMitra}
         options={{
-          title: 'Kirim Laporan',
+          title: 'Tambah Mitra',
           headerStyle: {backgroundColor: colors.secondary},
           headerTintColor: colors.normal,
           headerTitleStyle: {fontFamily: fonts.primary.SMB},
