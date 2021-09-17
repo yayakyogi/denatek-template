@@ -4,8 +4,9 @@ import MitraDashboard from './MitraDashboard';
 import MitraProfile from './MitraProfile';
 import MitraCheckIn from './MitraCheckIn';
 import MitraCheckOut from './MitraCheckOut';
-import MitraVisitDetail from './MitraVisitDetail';
 import MitraSendReport from './MitraSendReport';
+import CanvaserVisitDetail from './CanvaserVisitDetail';
+import CanvaserAddMitra from './CanvaserAddMitra';
 
 export {
   Splash,
@@ -14,6 +15,7 @@ export {
   MitraProfile,
   MitraCheckIn,
   MitraCheckOut,
-  MitraVisitDetail,
   MitraSendReport,
+  CanvaserVisitDetail,
+  CanvaserAddMitra,
 };
