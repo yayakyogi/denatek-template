@@ -20,7 +20,7 @@ const Login = ({navigation}) => {
   const [isMarketer, setIsMarketer] = useState(false); // state untuk role marketer
 
   // variale untuk menset warna ketika tema dalam mode darkMode
-  const darkTheme = {
+  const darkMode = {
     backgroundColor: isDarkMode
       ? colors.dark.background
       : colors.light.background,
@@ -32,7 +32,7 @@ const Login = ({navigation}) => {
   };
 
   return (
-    <View style={[styles.container, darkTheme]}>
+    <View style={[styles.container, darkMode]}>
       {/* beri warna statusbar */}
       <StatusBar
         backgroundColor={
@@ -44,7 +44,7 @@ const Login = ({navigation}) => {
         contentContainerStyle={styles.scrollview}>
         {/* logo */}
         <Image source={ILApp} style={styles.img} />
-        <Text style={[styles.title, darkTheme]}>Masuk sebagai</Text>
+        <Text style={[styles.title, darkMode]}>Masuk sebagai</Text>
         <ButtonFlex
           title1="Canvaser"
           title2="Marketer"
@@ -58,21 +58,22 @@ const Login = ({navigation}) => {
             setIsCanvaser(false);
             setIsMarketer(true);
           }}
-          bgDark={darkTheme}
+          bgDark={darkMode}
         />
+        <Gap height={20} />
         {/* form login email*/}
         <TextInput
           label="Email"
-          labelDark={labelDark}
-          darkTheme={darkTheme}
+          darkMode={darkMode}
           placeholder="Masukkan email anda"
           keyboardType="email-address"
         />
+        <Gap height={15} />
         <View style={styles.pw}>
           {/* form login password*/}
           <TextInput
             label="Password"
-            darkTheme={darkTheme}
+            darkMode={darkMode}
             placeholder="Masukkan password anda"
             // cek apakah showPassword bernilai true? jikak YA maka ubah secureTextEntry menjadi false agar password terlihat
             secureTextEntry={showPassword ? false : true}
