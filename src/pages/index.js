@@ -4,6 +4,7 @@ import MitraDashboard from './MitraDashboard';
 import MitraProfile from './MitraProfile';
 import MitraCheckIn from './MitraCheckIn';
 import MitraCheckOut from './MitraCheckOut';
+import MitraVisitDetail from './MitraVisitDetail';
 
 export {
   Splash,
@@ -12,4 +13,5 @@ export {
   MitraProfile,
   MitraCheckIn,
   MitraCheckOut,
+  MitraVisitDetail,
 };
