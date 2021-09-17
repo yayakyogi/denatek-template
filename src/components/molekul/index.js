@@ -3,6 +3,15 @@ import BottomTab from './BottomTab';
 import ButtonList from './ButtonList';
 import MenuFlex from './MenuFlex';
 import PhotoAbsent from './PhotoAbsent';
-import PhotoLaporan from './PhotoLaporan';
+import PhotoReport from './PhotoReport';
+import PhotoAddMitra from './PhotoAddMitra';
 
-export {ButtonFlex, BottomTab, MenuFlex, PhotoAbsent, PhotoLaporan, ButtonList};
+export {
+  ButtonFlex,
+  BottomTab,
+  MenuFlex,
+  PhotoAbsent,
+  PhotoReport,
+  ButtonList,
+  PhotoAddMitra,
+};
