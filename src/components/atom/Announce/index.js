@@ -3,12 +3,10 @@ import {StyleSheet, Text, View} from 'react-native';
 
 import {colors, fonts} from '../../../utils';
 
-const Announce = () => {
+const Announce = ({message}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>
-        Upload foto anda untuk melakukan absensi harian
-      </Text>
+      <Text style={styles.text}>{message}</Text>
     </View>
   );
 };
