@@ -9,6 +9,8 @@ import {
   MitraDashboard,
   MitraProfile,
   MitraCheckIn,
+  MitraCheckOut,
+  MitraVisitDetail,
 } from '../pages';
 import {BottomTab} from '../components';
 import {colors, fonts} from '../utils';
@@ -61,8 +63,30 @@ const Router = () => {
         component={MitraCheckIn}
         options={{
           title: 'Absen Pagi',
-          headerStyle: {backgrounColor: colors.secondary},
-          headerTintColor: colors.white,
+          headerStyle: {backgroundColor: colors.secondary},
+          headerTintColor: colors.normal,
+          headerTitleStyle: {fontFamily: fonts.primary.SMB},
+        }}
+      />
+      {/* halaman checkOut */}
+      <Stack.Screen
+        name="MitraCheckOut"
+        component={MitraCheckOut}
+        options={{
+          title: 'Absen Pulang',
+          headerStyle: {backgroundColor: colors.secondary},
+          headerTintColor: colors.normal,
+          headerTitleStyle: {fontFamily: fonts.primary.SMB},
+        }}
+      />
+      {/* halaman mitraVisitDetail */}
+      <Stack.Screen
+        name="MitraVisitDetail"
+        component={MitraVisitDetail}
+        options={{
+          title: 'Detail Kunjungan',
+          headerStyle: {backgroundColor: colors.secondary},
+          headerTintColor: colors.normal,
           headerTitleStyle: {fontFamily: fonts.primary.SMB},
         }}
       />
