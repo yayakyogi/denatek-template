@@ -11,7 +11,7 @@ import {
 import {useSelector, useDispatch} from 'react-redux';
 
 import {ILApp} from '../../assets';
-import {fonts, colors} from '../../utils';
+import {fonts, darkMode, statusBarDark, buttonTextDark} from '../../utils';
 import {Button, TextInput, Gap, ButtonText, ButtonFlex} from '../../components';
 import {
   setFormLogin,
@@ -37,41 +37,23 @@ const Login = ({navigation}) => {
     dispatch(setClearForm()); // bersihkan form
   };
 
-  // variable untuk menset styling ketika tema dalam mode darkMode
-  const darkMode = {
-    backgroundColor: isDarkMode
-      ? colors.dark.background
-      : colors.light.background,
-    color: isDarkMode ? colors.dark.text : colors.light.text,
-    borderColor: isDarkMode ? colors.dark.border : colors.light.border,
-  };
-  const buttonTextDark = {
-    color: isDarkMode ? colors.dark.text : colors.light.label,
-  };
-
   return (
-    <View style={[styles.container, darkMode]}>
+    <View style={[styles.container, darkMode(isDarkMode)]}>
       {/* beri warna statusbar */}
-      <StatusBar
-        backgroundColor={
-          isDarkMode ? colors.dark.statusbar : colors.light.statusbar
-        }
-      />
+      <StatusBar backgroundColor={statusBarDark(isDarkMode).backgroundColor} />
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollview}>
         {/* logo */}
         <Image source={ILApp} style={styles.img} />
-        <Text style={[styles.title, darkMode]}>Masuk sebagai</Text>
+        <Text style={[styles.title, darkMode(isDarkMode)]}>Masuk sebagai</Text>
         <ButtonFlex
-          // nama button
           title1="Canvaser"
           title2="Marketer"
-          // props untuk mengecek button mana yg aktif
-          btn1Active={loginReducer.isCanvaser}
+          btn1Active={loginReducer.isCanvaser} // props untuk mengecek button mana yg aktif
           btn2Active={loginReducer.isMarketer}
-          // props untuk fungsi tombol
           onPress1={() => {
+            // props untuk fungsi tombol
             dispatch(setIsMarketer(false));
             dispatch(setIsCanvaser(true));
           }}
@@ -79,34 +61,37 @@ const Login = ({navigation}) => {
             dispatch(setIsCanvaser(false));
             dispatch(setIsMarketer(true));
           }}
-          bgDark={darkMode} // props darkMode
+          bgDark={darkMode(isDarkMode)}
         />
         <Gap height={20} />
+
         {/* form login email*/}
         <TextInput
           label="Email"
-          darkMode={darkMode}
+          darkMode={darkMode(isDarkMode)}
           placeholder="Masukkan email anda"
           keyboardType="email-address"
           value={loginReducer.form.email}
           onChangeText={value => onInputChange(value, 'email')}
         />
         <Gap height={15} />
+
         <View style={styles.pw}>
           {/* form login password*/}
           <TextInput
             label="Password"
-            darkMode={darkMode}
+            darkMode={darkMode(isDarkMode)}
             placeholder="Masukkan password anda"
             secureTextEntry={loginReducer.showPassword ? false : true} // cek apakah showPassword bernilai true? jikak YA maka ubah secureTextEntry menjadi false agar password terlihat
             value={loginReducer.form.password}
             onChangeText={value => onInputChange(value, 'password')}
           />
+          {/* button show & hide password */}
           <ButtonText
             onPress={() =>
               dispatch(setShowPassword(!loginReducer.showPassword))
             }
-            labelDark={buttonTextDark}
+            labelDark={buttonTextDark(isDarkMode)}
             text={
               loginReducer.showPassword
                 ? 'Sembunyikan password'

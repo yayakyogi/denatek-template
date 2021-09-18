@@ -1,28 +1,21 @@
 import React from 'react';
 import {StyleSheet, View, ScrollView, useColorScheme} from 'react-native';
 
-import {colors} from '../../utils';
+import {colors, darkMode} from '../../utils';
 import {MenuDashboard} from '../../components';
 
 const MitraDashboard = ({navigation}) => {
   // set darkMode
   const isDarkMode = useColorScheme() === 'dark';
-  const darkMode = {
-    backgroundColor: isDarkMode
-      ? colors.dark.background
-      : colors.light.background,
-    color: isDarkMode ? colors.dark.text : colors.light.text,
-  };
-
   return (
     <View style={styles.container}>
-      <View style={[styles.wrapper, darkMode]}>
+      <View style={[styles.wrapper, darkMode(isDarkMode)]}>
         <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainer={styles.scrollview}>
           <MenuDashboard
             isDarkMode={isDarkMode} // props untuk menentukan apakah tema hp dark atau light untuk mengganti icon detail kunjungan
-            darkMode={darkMode} // props untuk merubah background dan warna text saat darkMode
+            darkMode={darkMode(isDarkMode)} // props untuk merubah background dan warna text saat darkMode
             title="Dashboard Marketer"
             id="anJAk909a"
             onPressCheckIn={() => {
