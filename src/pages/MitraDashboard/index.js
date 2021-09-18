@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View, ScrollView, useColorScheme} from 'react-native';
 
-import {colors, darkMode} from '../../utils';
+import {colors, darkMode, requestCameraPermission} from '../../utils';
 import {MenuDashboard} from '../../components';
 
 const MitraDashboard = ({navigation}) => {
   const isDarkMode = useColorScheme() === 'dark'; // set darkMode
+  useEffect(() => {
+    requestCameraPermission(); // permission camera
+  });
   return (
     <View style={styles.container}>
       <View style={[styles.wrapper, darkMode(isDarkMode)]}>
