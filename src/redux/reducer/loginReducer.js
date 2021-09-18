@@ -22,7 +22,7 @@ const loginReducer = (state = initialState, action) => {
   // set form ke default
   if (action.type === 'CLEAR_FORM') {
     return {
-      ...state.form,
+      ...state,
       form: {
         email: '',
         password: '',
