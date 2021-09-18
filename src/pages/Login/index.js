@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,18 +8,36 @@ import {
   StatusBar,
   ScrollView,
 } from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
 
 import {ILApp} from '../../assets';
 import {fonts, colors} from '../../utils';
 import {Button, TextInput, Gap, ButtonText, ButtonFlex} from '../../components';
+import {
+  setFormLogin,
+  setClearForm,
+  setIsCanvaser,
+  setIsMarketer,
+  setShowPassword,
+} from '../../redux/action';
 
 const Login = ({navigation}) => {
-  const [showPassword, setShowPassword] = useState(false); // state untuk melihat password
   const isDarkMode = useColorScheme() === 'dark'; // variabel untuk mengecek apakah tema hp darkMode atau tidak
-  const [isCanvaser, setIsCanvaser] = useState(true); // state untuk role canvaser
-  const [isMarketer, setIsMarketer] = useState(false); // state untuk role marketer
+  const loginReducer = useSelector(state => state.loginReducer); // baca state global dari loginReducer
+  const dispatch = useDispatch(); // variabel dispatch untuk menangani action creator
 
-  // variale untuk menset warna ketika tema dalam mode darkMode
+  // function untuk menerima perubahan input dari textInput
+  const onInputChange = (value, input) => {
+    dispatch(setFormLogin(input, value));
+  };
+
+  // function untuk menyimpan data
+  const sendData = () => {
+    console.log('Send data: ', loginReducer.form);
+    dispatch(setClearForm()); // bersihkan form
+  };
+
+  // variable untuk menset styling ketika tema dalam mode darkMode
   const darkMode = {
     backgroundColor: isDarkMode
       ? colors.dark.background
@@ -27,7 +45,7 @@ const Login = ({navigation}) => {
     color: isDarkMode ? colors.dark.text : colors.light.text,
     borderColor: isDarkMode ? colors.dark.border : colors.light.border,
   };
-  const labelDark = {
+  const buttonTextDark = {
     color: isDarkMode ? colors.dark.text : colors.light.label,
   };
 
@@ -50,19 +68,18 @@ const Login = ({navigation}) => {
           title1="Canvaser"
           title2="Marketer"
           // props untuk mengecek button mana yg aktif
-          btn1Active={isCanvaser}
-          btn2Active={isMarketer}
+          btn1Active={loginReducer.isCanvaser}
+          btn2Active={loginReducer.isMarketer}
           // props untuk fungsi tombol
           onPress1={() => {
-            setIsMarketer(false);
-            setIsCanvaser(true);
+            dispatch(setIsMarketer(false));
+            dispatch(setIsCanvaser(true));
           }}
           onPress2={() => {
-            setIsCanvaser(false);
-            setIsMarketer(true);
+            dispatch(setIsCanvaser(false));
+            dispatch(setIsMarketer(true));
           }}
-          // props darkMode
-          bgDark={darkMode}
+          bgDark={darkMode} // props darkMode
         />
         <Gap height={20} />
         {/* form login email*/}
@@ -71,6 +88,8 @@ const Login = ({navigation}) => {
           darkMode={darkMode}
           placeholder="Masukkan email anda"
           keyboardType="email-address"
+          value={loginReducer.form.email}
+          onChangeText={value => onInputChange(value, 'email')}
         />
         <Gap height={15} />
         <View style={styles.pw}>
@@ -79,17 +98,24 @@ const Login = ({navigation}) => {
             label="Password"
             darkMode={darkMode}
             placeholder="Masukkan password anda"
-            // cek apakah showPassword bernilai true? jikak YA maka ubah secureTextEntry menjadi false agar password terlihat
-            secureTextEntry={showPassword ? false : true}
+            secureTextEntry={loginReducer.showPassword ? false : true} // cek apakah showPassword bernilai true? jikak YA maka ubah secureTextEntry menjadi false agar password terlihat
+            value={loginReducer.form.password}
+            onChangeText={value => onInputChange(value, 'password')}
           />
           <ButtonText
-            onPress={() => setShowPassword(!showPassword)}
-            labelDark={labelDark}
-            text={showPassword ? 'Sembunyikan password' : 'Tampilkan password'}
+            onPress={() =>
+              dispatch(setShowPassword(!loginReducer.showPassword))
+            }
+            labelDark={buttonTextDark}
+            text={
+              loginReducer.showPassword
+                ? 'Sembunyikan password'
+                : 'Tampilkan password'
+            }
           />
         </View>
         <Gap height={40} />
-        <Button title="LOGIN" onPress={() => navigation.navigate('MainApp')} />
+        <Button title="LOGIN" onPress={sendData} />
       </ScrollView>
     </View>
   );
