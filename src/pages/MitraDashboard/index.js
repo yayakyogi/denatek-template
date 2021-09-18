@@ -5,8 +5,7 @@ import {colors, darkMode} from '../../utils';
 import {MenuDashboard} from '../../components';
 
 const MitraDashboard = ({navigation}) => {
-  // set darkMode
-  const isDarkMode = useColorScheme() === 'dark';
+  const isDarkMode = useColorScheme() === 'dark'; // set darkMode
   return (
     <View style={styles.container}>
       <View style={[styles.wrapper, darkMode(isDarkMode)]}>
