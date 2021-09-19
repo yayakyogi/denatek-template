@@ -1,7 +1,15 @@
-import React, {useState} from 'react';
-import {StyleSheet, View, useColorScheme, ScrollView} from 'react-native';
+import React from 'react';
+import * as ImagePicker from 'react-native-image-picker';
+import {
+  StyleSheet,
+  View,
+  useColorScheme,
+  ScrollView,
+  StatusBar,
+} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
 
-import {colors} from '../../utils';
+import {colors, darkMode, statusBarDark} from '../../utils';
 import {
   TextInput,
   Gap,
@@ -11,90 +19,137 @@ import {
   Announce,
   Line,
 } from '../../components';
+import {
+  addPhotoOutUri,
+  addPhotoInUri,
+  clearAddPhotoOutUri,
+  clearAddPhotoInUri,
+  addMitra,
+  setDefault,
+} from '../../redux/action';
 
 const CanvaserAddMitra = () => {
-  const [imageOut, setImageOut] = useState(''); // state untuk menampung foto tampak luar
-  const [imageIn, setImageIn] = useState(''); // state untuk menampung foto tampak dalam
-  // variabel untuk menentukan apakah tema hp dalam mode darkMode
   const isDarkMode = useColorScheme() === 'dark';
-  const darkMode = {
-    backgroundColor: isDarkMode
-      ? colors.dark.background
-      : colors.light.background,
-    color: isDarkMode ? colors.dark.text : colors.light.text,
-    borderColor: isDarkMode ? colors.dark.border : colors.light.border,
+  const canvaserReducer = useSelector(state => state.canvaserReducer);
+  const dispatch = useDispatch();
+  const margin = 10;
+
+  const addOutPhoto = () => {
+    ImagePicker.launchCamera(
+      {
+        mediaType: 'photo',
+        includeBase64: true,
+        quality: 0.5,
+      },
+      response => {
+        const source = `${response.assets[0].uri}`;
+        const imgBase64 = response.assets[0].base64;
+        dispatch(addPhotoOutUri(source, 'imgBase64_OUT'));
+      },
+    );
   };
-  const margin = 10; // variabel untuk memberikan jarak antar textInput
+  const addInPhoto = () => {
+    ImagePicker.launchCamera(
+      {
+        mediaType: 'photo',
+        includeBase64: true,
+        quality: 0.5,
+      },
+      response => {
+        const source = `${response.assets[0].uri}`;
+        const imgBase64 = response.assets[0].base64;
+        dispatch(addPhotoInUri(source, 'imgBase64_IN'));
+      },
+    );
+  };
+
+  const delOutPhoto = () => {
+    dispatch(clearAddPhotoOutUri());
+  };
+  const delInPhoto = () => {
+    dispatch(clearAddPhotoInUri());
+  };
+
+  const onInputChange = (value, input) => {
+    dispatch(addMitra(input, value));
+  };
+
+  const onSave = () => {
+    console.log(canvaserReducer.addMitra);
+    setTimeout(() => {
+      dispatch(setDefault());
+    }, 1000);
+  };
+
   return (
-    <View style={[styles.container, darkMode]}>
+    <View style={[styles.container, darkMode(isDarkMode)]}>
+      <StatusBar backgroundColor={statusBarDark(isDarkMode).backgroundColor} />
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollview}>
-        {/* <View style={styles.wrapper}> */}
         <Gap height={25} />
         <Announce message="Kirim data dari mitra serta swafoto di depan dan dalam toko" />
         <Gap height={20} />
-        {/* tambah foto tampak luar */}
         <PhotoForm
-          darkMode={darkMode}
+          darkMode={darkMode(isDarkMode)}
           label="Foto Tampak Luar"
-          image={imageOut}
-          onPress={() => {}}
-          onDelete={() => {}}
+          image={canvaserReducer.addPhotoOutUri}
+          onPress={addOutPhoto}
+          onDelete={delOutPhoto}
         />
         <Gap height={margin} />
-
-        {/* tambah foto tampak dalam */}
         <PhotoForm
-          darkMode={darkMode}
+          darkMode={darkMode(isDarkMode)}
           label="Foto Tampak Dalam"
-          image={imageIn}
-          onPress={() => {}}
-          onDelete={() => {}}
+          image={canvaserReducer.addPhotoInUri}
+          onPress={addInPhoto}
+          onDelete={delInPhoto}
         />
         <Gap height={20} />
         <Line height={2} color={colors.primary} />
         <Gap height={20} />
-        {/* list kategori toko */}
-        <ButtonList label="Kategori Toko" value="" darkMode={darkMode} />
+        <ButtonList
+          label="Kategori Toko"
+          value=""
+          darkMode={darkMode(isDarkMode)}
+        />
         <Gap height={margin} />
-
-        {/* nama toko */}
         <TextInput
           label="Nama Toko"
           placeholder="Masukkan nama toko"
-          darkMode={darkMode}
+          darkMode={darkMode(isDarkMode)}
+          value={canvaserReducer.addMitra.name}
+          onChangeText={value => onInputChange(value, 'name')}
         />
         <Gap height={margin} />
-
-        {/* alamat toko */}
         <TextInput
           label="Alamat Toko"
           placeholder="Masukkan alamat lengkap"
-          darkMode={darkMode}
+          darkMode={darkMode(isDarkMode)}
+          value={canvaserReducer.addMitra.addressDetail}
+          onChangeText={value => onInputChange(value, 'addressDetail')}
         />
         <Gap height={margin} />
-
-        {/* nomor telepon */}
         <TextInput
           label="Nomor Telepon"
           placeholder="Masukkan nomor telepon aktif"
-          darkMode={darkMode}
+          darkMode={darkMode(isDarkMode)}
           keyboardType="number-pad"
+          value={canvaserReducer.addMitra.phoneNumber}
+          onChangeText={value => onInputChange(value, 'phoneNumber')}
         />
         <Gap height={margin} />
-
-        {/* kode area */}
         <TextInput
           label="Kode Area"
           placeholder="Masukkan kode area"
-          darkMode={darkMode}
+          darkMode={darkMode(isDarkMode)}
+          value={canvaserReducer.addMitra.areaCode}
+          onChangeText={value => onInputChange(value, 'areaCode')}
         />
         <Gap height={margin} />
-        {/* </View> */}
       </ScrollView>
       <View style={[styles.btnView, darkMode]}>
-        <Button title="Simpan" />
+        <Button title="Simpan" onPress={onSave} />
       </View>
     </View>
   );
@@ -108,6 +163,5 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingHorizontal: 32,
   },
-  // wrapper: {paddingHorizontal: 32},
   scrollview: {flexGrow: 1},
 });

@@ -1,7 +1,8 @@
 const initialState = {
-  photoOutUri: '',
-  photoInUri: '',
-  // canvaser visitLog
+  visitPhotoOutUri: '',
+  visitPhotoInUri: '',
+  addPhotoOutUri: '',
+  addPhotoInUri: '',
   visitLog: {
     userId: '',
     mitraId: '',
@@ -11,59 +12,148 @@ const initialState = {
     mainPhoto: '',
     altPhoto: '',
   },
+  addMitra: {
+    name: '',
+    phoneNumber: '',
+    addressDetail: '',
+    areaCode: '',
+    mainPhoto: '',
+    altPhoto: '',
+    gpsLogId: '',
+    canvaser: '', // user_id
+  },
 };
 
 const canvaserReducer = (state = initialState, action) => {
-  // set action photoOutUri
-  if (action.type === 'SET_PHOTO_OUT_URI') {
+  // set default semua state
+  if (action.type === 'SET_DEFAULT') {
     return {
       ...state,
-      photoOutUri: action.uriPhoto,
+      visitPhotoOutUri: '',
+      visitPhotoInUri: '',
+      addPhotoOutUri: '',
+      addPhotoInUri: '',
+      visitLog: {
+        ...state.visitLog,
+        userId: '',
+        mitraId: '',
+        mitraReportSale: '',
+        productMarketerSale: '',
+        notes: '',
+        mainPhoto: '',
+        altPhoto: '',
+      },
+      addMitra: {
+        ...state.addMitra,
+        name: '',
+        phoneNumber: '',
+        addressDetail: '',
+        areaCode: '',
+        mainPhoto: '',
+        altPhoto: '',
+        gpsLogId: '',
+        canvaser: '', // user_id
+      },
+    };
+  }
+
+  // REDUCER VISIT LOG (DETAIL KUNJUNGAN)
+  if (action.type === 'VISIT_PHOTO_OUT_URI') {
+    return {
+      ...state,
+      visitPhotoOutUri: action.uriPhoto,
       visitLog: {
         ...state.visitLog,
         mainPhoto: action.mainPhoto,
       },
     };
   }
-  // set action photoInUri
-  if (action.type === 'SET_PHOTO_IN_URI') {
+  if (action.type === 'VISIT_PHOTO_IN_URI') {
     return {
       ...state,
-      photoInUri: action.uriPhoto,
+      visitPhotoInUri: action.uriPhoto,
       visitLog: {
         ...state.visitLog,
         altPhoto: action.altPhoto,
       },
     };
   }
-  // delete photoOutUri
-  if (action.type === 'DELETE_PHOTO_OUT_URI') {
+  if (action.type === 'CLEAR_VISIT_PHOTO_OUT_URI') {
     return {
       ...state,
-      photoOutUri: '',
+      visitPhotoOutUri: '',
       visitLog: {
         ...state.visitLog,
         mainPhoto: '',
       },
     };
   }
-  // delete photoInUri
-  if (action.type === 'DELETE_PHOTO_IN_URI') {
+  if (action.type === 'CLEAR_VISIT_PHOTO_IN_URI') {
     return {
       ...state,
-      photoInUri: '',
+      visitPhotoInUri: '',
       visitLog: {
         ...state.visitLog,
         altPhoto: '',
       },
     };
   }
-  // set action visit log
   if (action.type === 'SET_VISIT_LOG') {
     return {
       ...state,
       visitLog: {
         ...state.visitLog,
+        [action.typeInput]: action.typeValue,
+      },
+    };
+  }
+
+  // REDUCER ADD MITRA (CANVASER MENAMBAHKAN MITRA)
+  if (action.type === 'ADD_PHOTO_OUT_URI') {
+    return {
+      ...state,
+      addPhotoOutUri: action.uriPhoto,
+      addMitra: {
+        ...state.addMitra,
+        mainPhoto: action.mainPhoto,
+      },
+    };
+  }
+  if (action.type === 'ADD_PHOTO_IN_URI') {
+    return {
+      ...state,
+      addPhotoInUri: action.uriPhoto,
+      addMitra: {
+        ...state.addMitra,
+        altPhoto: action.altPhoto,
+      },
+    };
+  }
+  if (action.type === 'CLEAR_ADD_PHOTO_OUT_URI') {
+    return {
+      ...state,
+      addPhotoOutUri: '',
+      addMitra: {
+        ...state.addMitra,
+        mainPhoto: '',
+      },
+    };
+  }
+  if (action.type === 'CLEAR_ADD_PHOTO_IN_URI') {
+    return {
+      ...state,
+      addPhotoInUri: '',
+      addMitra: {
+        ...state.addMitra,
+        altPhoto: '',
+      },
+    };
+  }
+  if (action.type === 'SET_ADD_MITRA') {
+    return {
+      ...state,
+      addMitra: {
+        ...state.addMitra,
         [action.typeInput]: action.typeValue,
       },
     };
