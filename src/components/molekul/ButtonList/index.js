@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: fonts.primary.REG,
     marginBottom: 6,
-    marginTop: 24,
   },
   buttonList: {
     flexDirection: 'row',
