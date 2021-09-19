@@ -21,7 +21,7 @@ const MitraCheckIn = () => {
       },
       response => {
         if (response.didCancel || response.error) {
-          console.log('User cancelled image picker');
+          console.log('Batal mengambil foto');
         } else {
           const source = `${response.assets[0].uri}`;
           const imgBase64 = response.assets[0].base64;
