@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Text,
@@ -19,32 +19,38 @@ import {
   setIsCanvaser,
   setIsMarketer,
   setShowPassword,
+  setLoading,
+  mitraLogin,
 } from '../../redux/action';
 
 const Login = ({navigation}) => {
-  const isDarkMode = useColorScheme() === 'dark'; // variabel untuk mengecek apakah tema hp darkMode atau tidak
-  const loginReducer = useSelector(state => state.loginReducer); // baca state global dari loginReducer
-  const dispatch = useDispatch(); // variabel dispatch untuk menangani action creator
+  const isDarkMode = useColorScheme() === 'dark';
+  const loginReducer = useSelector(state => state.loginReducer);
+  const dispatch = useDispatch();
 
-  // function untuk menerima perubahan input dari textInput
   const onInputChange = (value, input) => {
     dispatch(setFormLogin(input, value));
   };
 
-  // function untuk menyimpan data
   const sendData = () => {
-    console.log('Send data: ', loginReducer.form);
-    dispatch(setClearForm()); // bersihkan form
+    dispatch(setLoading(true));
+    if (loginReducer.form.email && loginReducer.form.password) {
+      const data = loginReducer.form;
+      const type = loginReducer.isCanvaser ? 'Canvaser' : 'Marketer';
+      dispatch(mitraLogin(type, data, navigation));
+      dispatch(setClearForm()); // bersihkan form
+    } else {
+      console.log('Form wajib diisi');
+      dispatch(setLoading(false));
+    }
   };
 
   return (
     <View style={[styles.container, darkMode(isDarkMode)]}>
-      {/* beri warna statusbar */}
       <StatusBar backgroundColor={statusBarDark(isDarkMode).backgroundColor} />
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollview}>
-        {/* logo */}
         <Image source={ILApp} style={styles.img} />
         <Text style={[styles.title, darkMode(isDarkMode)]}>Masuk sebagai</Text>
         <ButtonFlex
@@ -64,8 +70,6 @@ const Login = ({navigation}) => {
           bgDark={darkMode(isDarkMode)}
         />
         <Gap height={20} />
-
-        {/* form login email*/}
         <TextInput
           label="Email"
           darkMode={darkMode(isDarkMode)}
@@ -75,9 +79,7 @@ const Login = ({navigation}) => {
           onChangeText={value => onInputChange(value, 'email')}
         />
         <Gap height={15} />
-
         <View style={styles.pw}>
-          {/* form login password*/}
           <TextInput
             label="Password"
             darkMode={darkMode(isDarkMode)}
@@ -86,7 +88,6 @@ const Login = ({navigation}) => {
             value={loginReducer.form.password}
             onChangeText={value => onInputChange(value, 'password')}
           />
-          {/* button show & hide password */}
           <ButtonText
             onPress={() =>
               dispatch(setShowPassword(!loginReducer.showPassword))
