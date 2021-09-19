@@ -10,7 +10,7 @@ const PhotoForm = ({image, label, darkMode, onPress, onDelete}) => {
       {image ? (
         // jika ada gambar tampilkan gambar tersebut
         <View style={styles.viewImage}>
-          <Image source={image} style={styles.image} />
+          <Image source={{uri: image}} style={styles.image} />
           <TouchableOpacity onPress={onDelete} style={styles.delete}>
             <Text style={styles.deletePhoto}>Hapus foto</Text>
           </TouchableOpacity>

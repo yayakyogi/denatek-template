@@ -1,7 +1,18 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, View, ScrollView, useColorScheme} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  useColorScheme,
+  StatusBar,
+} from 'react-native';
 
-import {colors, darkMode, requestCameraPermission} from '../../utils';
+import {
+  colors,
+  darkMode,
+  statusBarDark,
+  requestCameraPermission,
+} from '../../utils';
 import {MenuDashboard} from '../../components';
 
 const MitraDashboard = ({navigation}) => {
@@ -15,6 +26,9 @@ const MitraDashboard = ({navigation}) => {
         <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainer={styles.scrollview}>
+          <StatusBar
+            backgroundColor={statusBarDark(isDarkMode).backgroundColor}
+          />
           <MenuDashboard
             isDarkMode={isDarkMode} // props untuk menentukan apakah tema hp dark atau light untuk mengganti icon detail kunjungan
             darkMode={darkMode(isDarkMode)} // props untuk merubah background dan warna text saat darkMode
