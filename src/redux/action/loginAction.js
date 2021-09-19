@@ -1,4 +1,5 @@
 import {API_HOST, queryString} from '../../utils';
+import {setLoading} from './mitraAction';
 
 // ubah value form login
 export const setFormLogin = (inputType, inputValue) => {
@@ -33,16 +34,19 @@ export const mitraLogin = (type, data, navigation) => dispatch => {
       .then(response => response.json())
       .then(res => {
         if (res.id) {
+          dispatch(setLoading(false));
           const saveData = {
             type,
             id: res.id,
             token: res.token,
           };
         } else {
+          dispatch(setLoading(false));
           console.log(res.message);
         }
       })
       .catch(error => {
+        dispatch(setLoading(false));
         console.log(error);
       });
   } else {
@@ -56,6 +60,7 @@ export const mitraLogin = (type, data, navigation) => dispatch => {
       .then(response => response.json())
       .then(res => {
         if (res.id) {
+          dispatch(setLoading(false));
           const saveData = {
             type,
             id: res.id,
@@ -63,10 +68,12 @@ export const mitraLogin = (type, data, navigation) => dispatch => {
           };
           dispatch(setClearForm()); // bersihkan form
         } else {
+          dispatch(setLoading(false));
           console.log(res.message);
         }
       })
       .catch(error => {
+        dispatch(setLoading(false));
         console.log(error);
       });
   }
