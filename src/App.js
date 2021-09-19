@@ -1,20 +1,23 @@
 import React from 'react';
 import Router from '../src/router';
 import {NavigationContainer} from '@react-navigation/native';
-import {Provider} from 'react-redux';
+import {Provider, useSelector} from 'react-redux';
 import store from './redux/store';
+import {Loading} from './components';
 
 const MainApp = () => {
-  <NavigationContainer>
-    <Router />
-  </NavigationContainer>;
+  const {isLoading} = useSelector(state => state.mitraReducer);
+  return (
+    <NavigationContainer>
+      <Router />
+      {isLoading && <Loading />}
+    </NavigationContainer>
+  );
 };
 const App = () => {
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <Router />
-      </NavigationContainer>
+      <MainApp />
     </Provider>
   );
 };
