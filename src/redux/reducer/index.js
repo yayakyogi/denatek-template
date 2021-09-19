@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 import loginReducer from './loginReducer';
-import canvaserReducer from './canvaserReducer';
+import mitraReducer from './mitraReducer';
 
-const reducer = combineReducers({loginReducer, canvaserReducer});
+const reducer = combineReducers({loginReducer, mitraReducer});
 
 export default reducer;
