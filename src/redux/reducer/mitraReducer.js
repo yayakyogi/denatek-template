@@ -1,5 +1,6 @@
 const initialState = {
   photoUri: '',
+  isLoading: false,
   // reducer absen
   absent: {
     userId: '',
@@ -10,6 +11,13 @@ const initialState = {
 };
 
 const mitraReducer = (state = initialState, action) => {
+  // reducer set loading
+  if (action.type === 'SET_LOADING') {
+    return {
+      ...state,
+      isLoading: action.value,
+    };
+  }
   // reducer set photoUri
   if (action.type === 'SET_PHOTO_ABSENT') {
     return {

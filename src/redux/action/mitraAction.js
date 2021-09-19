@@ -10,3 +10,7 @@ export const mitraAbsent = (userId, checkInLatLng) => {
 export const deletePhoto = () => {
   return {type: 'SET_DEFAULT'};
 };
+// set loading
+export const setLoading = value => {
+  return {type: 'SET_LOADING', value};
+};
