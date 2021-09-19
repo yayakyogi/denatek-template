@@ -1,30 +1,53 @@
-import React, {useState} from 'react';
+import React from 'react';
+import * as ImagePicker from 'react-native-image-picker';
 import {StyleSheet, View, useColorScheme, StatusBar} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
 
-import {colors} from '../../utils';
+import {darkMode, statusBarDark} from '../../utils';
 import {MenuAbsent} from '../../components';
+import {photoUriAbsent, mitraAbsent, deletePhoto} from '../../redux/action';
 
 const MitraCheckOut = () => {
-  const [image, setImage] = useState('');
+  const mitraReducer = useSelector(state => state.mitraReducer);
+  const dispatch = useDispatch();
   const isDarkMode = useColorScheme() === 'dark';
-  const darkMode = {
-    backgroundColor: isDarkMode
-      ? colors.dark.background
-      : colors.light.background,
-  };
-  return (
-    <View style={[styles.container, darkMode]}>
-      <StatusBar
-        backgroundColor={
-          isDarkMode ? colors.dark.statusbar : colors.light.statusbar
+
+  const addPhoto = () => {
+    ImagePicker.launchCamera(
+      {
+        mediaType: 'photo',
+        includeBase64: true,
+        quality: 0.5,
+      },
+      response => {
+        if (response.didCancel || response.error) {
+          console.log('Batal mengambil foto');
+        } else {
+          const source = `${response.assets[0].uri}`;
+          const imgBase64 = response.assets[0].base64;
+          dispatch(photoUriAbsent(source, imgBase64));
+          const userId = '12IFE123';
+          const checkInLatLng = '-1,121303 9090129.1';
+          dispatch(mitraAbsent(userId, checkInLatLng));
         }
-      />
+      },
+    );
+  };
+
+  // function saveData
+  const saveData = () => {
+    console.log(mitraReducer.absent);
+  };
+
+  return (
+    <View style={[styles.container, darkMode(isDarkMode)]}>
+      <StatusBar backgroundColor={statusBarDark(isDarkMode).backgroundColor} />
       <MenuAbsent
-        darkMode={darkMode}
-        image={image}
-        onPressAdd={() => {}}
-        onPressDel={() => {}}
-        onSave={() => {}}
+        darkMode={darkMode(isDarkMode)}
+        image={mitraReducer.photoUri}
+        onPressAdd={addPhoto}
+        onPressDel={() => dispatch(deletePhoto())}
+        onSave={saveData}
       />
     </View>
   );
