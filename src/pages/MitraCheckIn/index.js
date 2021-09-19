@@ -1,20 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 import * as ImagePicker from 'react-native-image-picker';
 import {StyleSheet, View, useColorScheme, StatusBar} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 
 import {darkMode, statusBarDark} from '../../utils';
 import {MenuAbsent} from '../../components';
-import {canvaserAbsent, deletePhoto} from '../../redux/action';
+import {photoUriAbsent, mitraAbsent, deletePhoto} from '../../redux/action';
 
 const MitraCheckIn = () => {
-  const [image, setImage] = useState('');
-  const [imageBase64, setImageBase64] = useState('');
-  const canvaserReducer = useSelector(state => state.canvaserReducer);
+  const mitraReducer = useSelector(state => state.mitraReducer);
   const dispatch = useDispatch();
   const isDarkMode = useColorScheme() === 'dark';
 
-  // Function upload photo
   const addPhoto = () => {
     ImagePicker.launchCamera(
       {
@@ -26,28 +23,20 @@ const MitraCheckIn = () => {
         if (response.didCancel || response.error) {
           console.log('User cancelled image picker');
         } else {
-          const source = {uri: response.assets[0].uri};
+          const source = `${response.assets[0].uri}`;
           const imgBase64 = response.assets[0].base64;
-          setImage(source);
-          setImageBase64(imgBase64);
+          dispatch(photoUriAbsent(source, imgBase64));
+          const userId = '12IFE123';
+          const checkInLatLng = '-1,121303 9090129.1';
+          dispatch(mitraAbsent(userId, checkInLatLng));
         }
       },
     );
   };
 
-  // function delete photo
-  const delPhoto = () => {
-    setImage('');
-    dispatch(deletePhoto());
-  };
-
   // function saveData
   const saveData = () => {
-    // const userId = '12IFE123';
-    // const checkInPhoto = imageBase64;
-    // const checkInLatLng = '-1,121303 9090129.1';
-    // dispatch(canvaserAbsent(userId, checkInPhoto, checkInLatLng));
-    console.log(canvaserReducer.absent);
+    console.log(mitraReducer.absent);
   };
 
   return (
@@ -55,9 +44,9 @@ const MitraCheckIn = () => {
       <StatusBar backgroundColor={statusBarDark(isDarkMode).backgroundColor} />
       <MenuAbsent
         darkMode={darkMode(isDarkMode)}
-        image={image}
+        image={mitraReducer.photoUri}
         onPressAdd={addPhoto}
-        onPressDel={delPhoto}
+        onPressDel={() => dispatch(deletePhoto())}
         onSave={saveData}
       />
     </View>
