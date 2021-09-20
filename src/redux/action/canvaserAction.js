@@ -1,3 +1,6 @@
+import {API_HOST, queryString} from '../../utils';
+import {setLoading} from './mitraAction';
+
 /* VISIT LOG */
 // set photoOutUri di halaman detail kunjungans
 export const visitPhotoOutUri = (uriPhoto, mainPhoto) => {
@@ -37,12 +40,31 @@ export const clearAddPhotoOutUri = () => {
 export const clearAddPhotoInUri = () => {
   return {type: 'CLEAR_ADD_PHOTO_IN_URI'};
 };
-// add mitra
+// global state add mitra
 export const addMitra = (typeInput, typeValue) => {
   return {type: 'SET_ADD_MITRA', typeInput, typeValue};
 };
-
-/* SET DEFAULT SEMUA STATE */
-export const setDefault = () => {
-  return {type: 'SET_DEFAULT'};
+// send add mitra on endpoint
+export const canvaserAddMitra = (data, token, navigation) => dispatch => {
+  fetch(`${API_HOST.url}/mitra/create`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + token,
+    },
+    body: JSON.stringify(data),
+  })
+    .then(response => response.json())
+    .then(response => {
+      dispatch(setLoading(false));
+      if (response.status === 'sukses') {
+        console.log('Sukses menambah mitra');
+      } else {
+        console.log(`${response.status} - ${response.message}`);
+      }
+    })
+    .catch(error => {
+      console.log(error);
+    });
 };
