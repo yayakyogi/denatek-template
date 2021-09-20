@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 
-import {colors, darkMode, statusBarDark} from '../../utils';
+import {colors, darkMode, statusBarDark, optionCamera} from '../../utils';
 import {
   TextInput,
   Gap,
@@ -37,32 +37,18 @@ const CanvaserAddMitra = ({navigation}) => {
   const margin = 10;
 
   const addOutPhoto = () => {
-    ImagePicker.launchCamera(
-      {
-        mediaType: 'photo',
-        includeBase64: true,
-        quality: 0.5,
-      },
-      response => {
-        const source = `${response.assets[0].uri}`;
-        const imgBase64 = response.assets[0].base64;
-        dispatch(addPhotoOutUri(source, 'imgBase64_OUT'));
-      },
-    );
+    ImagePicker.launchCamera(optionCamera, response => {
+      const source = `${response.assets[0].uri}`;
+      const imgBase64 = response.assets[0].base64;
+      dispatch(addPhotoOutUri(source, 'imgBase64_OUT'));
+    });
   };
   const addInPhoto = () => {
-    ImagePicker.launchCamera(
-      {
-        mediaType: 'photo',
-        includeBase64: true,
-        quality: 0.5,
-      },
-      response => {
-        const source = `${response.assets[0].uri}`;
-        const imgBase64 = response.assets[0].base64;
-        dispatch(addPhotoInUri(source, 'imgBase64_IN'));
-      },
-    );
+    ImagePicker.launchCamera(optionCamera, response => {
+      const source = `${response.assets[0].uri}`;
+      const imgBase64 = response.assets[0].base64;
+      dispatch(addPhotoInUri(source, 'imgBase64_IN'));
+    });
   };
 
   const delOutPhoto = () => {
