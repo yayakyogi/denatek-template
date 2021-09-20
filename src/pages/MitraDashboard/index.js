@@ -6,6 +6,7 @@ import {
   useColorScheme,
   StatusBar,
 } from 'react-native';
+import {useDispatch} from 'react-redux';
 
 import {
   colors,
@@ -14,9 +15,11 @@ import {
   requestCameraPermission,
 } from '../../utils';
 import {MenuDashboard} from '../../components';
+import {sendLocation} from '../../redux/action';
 
 const MitraDashboard = ({navigation}) => {
-  const isDarkMode = useColorScheme() === 'dark'; // set darkMode
+  const isDarkMode = useColorScheme() === 'dark';
+  const dispatch = useDispatch();
   useEffect(() => {
     requestCameraPermission(); // permission camera
   });
@@ -29,7 +32,7 @@ const MitraDashboard = ({navigation}) => {
           <StatusBar
             backgroundColor={statusBarDark(isDarkMode).backgroundColor}
           />
-          <MenuDashboard
+          <MenuDashboard // component/organisme
             isDarkMode={isDarkMode} // props untuk menentukan apakah tema hp dark atau light untuk mengganti icon detail kunjungan
             darkMode={darkMode(isDarkMode)} // props untuk merubah background dan warna text saat darkMode
             title="Dashboard Marketer"
