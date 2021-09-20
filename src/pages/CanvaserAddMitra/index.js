@@ -26,9 +26,11 @@ import {
   clearAddPhotoInUri,
   addMitra,
   setDefault,
+  setLoading,
+  canvaserAddMitra,
 } from '../../redux/action';
 
-const CanvaserAddMitra = () => {
+const CanvaserAddMitra = ({navigation}) => {
   const isDarkMode = useColorScheme() === 'dark';
   const canvaserReducer = useSelector(state => state.canvaserReducer);
   const dispatch = useDispatch();
@@ -76,9 +78,8 @@ const CanvaserAddMitra = () => {
 
   const onSave = () => {
     console.log(canvaserReducer.addMitra);
-    setTimeout(() => {
-      dispatch(setDefault());
-    }, 1000);
+    dispatch(setLoading(true));
+    dispatch(canvaserAddMitra(canvaserReducer.addMitra, userToken, navigation));
   };
 
   return (
