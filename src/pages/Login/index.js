@@ -34,10 +34,11 @@ const Login = ({navigation}) => {
 
   const sendData = () => {
     dispatch(setLoading(true));
+    navigation.navigate('MainApp');
     if (loginReducer.form.email && loginReducer.form.password) {
       const data = loginReducer.form;
       const type = loginReducer.isCanvaser ? 'Canvaser' : 'Marketer';
-      dispatch(mitraLogin(type, data, navigation));
+      // dispatch(mitraLogin(type, data, navigation));
       dispatch(setClearForm()); // bersihkan form
     } else {
       console.log('Form wajib diisi');
