@@ -21,15 +21,17 @@ export const getData = async key => {
 };
 
 // remove 1 item/key dari localStorage
-export const removeItem = key => {
-  AsyncStorage.removeItem(key).then(() =>
-    console.log('Sukses menghapus 1 item dari localStorage'),
-  );
+export const removeItem = (key, navigation, routeName, message) => {
+  AsyncStorage.removeItem(key).then(() => {
+    console.log(message);
+    navigation.reset({index: 0, routes: [{name: routeName}]});
+  });
 };
 
 // remove >1 item/key dari localStorage
-export const multiRemove = key => {
-  AsyncStorage.multiRemove(key).then(() =>
-    console.log('Sukses menghapus beberapa item dari localStorage'),
-  );
+export const multiRemove = (key, navigation, routeName, message) => {
+  AsyncStorage.multiRemove(key).then(() => {
+    console.log(message);
+    navigation.reset({index: 0, routes: [{name: routeName}]});
+  });
 };
