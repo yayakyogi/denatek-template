@@ -22,10 +22,16 @@ export const getData = async key => {
 
 // remove 1 item/key dari localStorage
 export const removeItem = (key, navigation, routeName, message) => {
-  AsyncStorage.removeItem(key).then(() => {
-    console.log(message);
-    navigation.reset({index: 0, routes: [{name: routeName}]});
-  });
+  if (navigation) {
+    AsyncStorage.removeItem(key).then(() => {
+      console.log(message);
+      navigation.reset({index: 0, routes: [{name: routeName}]});
+    });
+  } else {
+    AsyncStorage.removeItem(key).then(() => {
+      console.log(message);
+    });
+  }
 };
 
 // remove >1 item/key dari localStorage
