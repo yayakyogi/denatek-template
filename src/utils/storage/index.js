@@ -35,9 +35,15 @@ export const removeItem = (key, navigation, routeName, message) => {
 };
 
 // remove >1 item/key dari localStorage
-export const multiRemove = (key, navigation, routeName, message) => {
-  AsyncStorage.multiRemove(key).then(() => {
-    console.log(message);
-    navigation.reset({index: 0, routes: [{name: routeName}]});
-  });
+export const multiRemove = (key = [], navigation, routeName, message) => {
+  if (navigation) {
+    AsyncStorage.multiRemove(key).then(() => {
+      console.log(message);
+      navigation.reset({index: 0, routes: [{name: routeName}]});
+    });
+  } else {
+    AsyncStorage.multiRemove(key).then(() => {
+      console.log(message);
+    });
+  }
 };
