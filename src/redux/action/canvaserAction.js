@@ -1,4 +1,4 @@
-import {API_HOST, queryString} from '../../utils';
+import {API_HOST, showMessage} from '../../utils';
 import {setLoading} from './mitraAction';
 
 /* VISIT LOG */
@@ -44,6 +44,7 @@ export const clearAddPhotoInUri = () => {
 export const addMitra = (typeInput, typeValue) => {
   return {type: 'SET_ADD_MITRA', typeInput, typeValue};
 };
+
 // send add mitra on endpoint
 export const canvaserAddMitra = (data, token, navigation) => dispatch => {
   fetch(`${API_HOST.url}/mitra/create`, {
@@ -60,11 +61,14 @@ export const canvaserAddMitra = (data, token, navigation) => dispatch => {
       dispatch(setLoading(false));
       if (response.status === 'sukses') {
         console.log('Sukses menambah mitra');
+        showMessage('Sukses menambahkan mitra baru', 'success');
       } else {
         console.log(`${response.status} - ${response.message}`);
+        showMessage(`${response.status} - ${response.message}`);
       }
     })
     .catch(error => {
       console.log(error);
+      showMessage(error);
     });
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import * as ImagePicker from 'react-native-image-picker';
 import {
   StyleSheet,
@@ -9,7 +9,14 @@ import {
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 
-import {colors, darkMode, statusBarDark, optionCamera} from '../../utils';
+import {
+  colors,
+  darkMode,
+  statusBarDark,
+  optionCamera,
+  getData,
+  showMessage,
+} from '../../utils';
 import {
   TextInput,
   Gap,
@@ -25,16 +32,24 @@ import {
   clearAddPhotoOutUri,
   clearAddPhotoInUri,
   addMitra,
-  setDefault,
   setLoading,
   canvaserAddMitra,
 } from '../../redux/action';
 
 const CanvaserAddMitra = ({navigation}) => {
+  const [dataUser, setDataUser] = useState('');
   const isDarkMode = useColorScheme() === 'dark';
   const canvaserReducer = useSelector(state => state.canvaserReducer);
   const dispatch = useDispatch();
   const margin = 10;
+
+  useEffect(() => {
+    getData('userData').then(response => {
+      if (response) {
+        setDataUser(response);
+      }
+    });
+  });
 
   const addOutPhoto = () => {
     ImagePicker.launchCamera(optionCamera, response => {
@@ -47,7 +62,7 @@ const CanvaserAddMitra = ({navigation}) => {
     ImagePicker.launchCamera(optionCamera, response => {
       const source = `${response.assets[0].uri}`;
       const imgBase64 = response.assets[0].base64;
-      dispatch(addPhotoInUri(source, 'imgBase64_IN'));
+      dispatch(addPhotoInUri(source, 'imgBase64_IN')); // saat production hilangkan tanda petik
     });
   };
 
@@ -63,9 +78,23 @@ const CanvaserAddMitra = ({navigation}) => {
   };
 
   const onSave = () => {
-    console.log(canvaserReducer.addMitra);
     dispatch(setLoading(true));
-    dispatch(canvaserAddMitra(canvaserReducer.addMitra, userToken, navigation));
+    if (
+      canvaserReducer.addMitra.mainPhoto &&
+      canvaserReducer.addMitra.altPhoto &&
+      canvaserReducer.addMitra.name &&
+      canvaserReducer.addMitra.addressDetail &&
+      canvaserReducer.addMitra.phoneNumber &&
+      canvaserReducer.addMitra.areaCode
+    ) {
+      console.log(canvaserReducer.addMitra);
+      dispatch(
+        canvaserAddMitra(canvaserReducer.addMitra, dataUser.token, navigation),
+      );
+    } else {
+      dispatch(setLoading(false));
+      showMessage('Form wajib diisi semua');
+    }
   };
 
   return (
