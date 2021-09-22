@@ -40,7 +40,7 @@ export const mitraLogin = (type, data, navigation) => dispatch => {
             id: res.id,
             token: res.token,
           };
-          storeData(saveData);
+          storeData('userData', saveData);
           dispatch(setClearForm());
           navigation.replace('MainApp');
         } else {

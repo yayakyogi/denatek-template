@@ -38,16 +38,17 @@ const Login = ({navigation}) => {
   };
 
   const sendData = () => {
-    dispatch(setLoading(true));
-    if (loginReducer.form.email && loginReducer.form.password) {
-      const data = loginReducer.form;
-      const type = loginReducer.isCanvaser ? 'Canvaser' : 'Marketer';
-      dispatch(mitraLogin(type, data, navigation));
-    } else {
-      console.log('Form wajib diisi');
-      showMessage('Form wajib diisi');
-      dispatch(setLoading(false));
-    }
+    navigation.navigate('MainApp');
+    // dispatch(setLoading(true));
+    // if (loginReducer.form.email && loginReducer.form.password) {
+    //   const data = loginReducer.form;
+    //   const type = loginReducer.isCanvaser ? 'Canvaser' : 'Marketer';
+    //   dispatch(mitraLogin(type, data, navigation));
+    // } else {
+    //   console.log('Form wajib diisi');
+    //   showMessage('Form wajib diisi');
+    //   dispatch(setLoading(false));
+    // }
   };
 
   return (
