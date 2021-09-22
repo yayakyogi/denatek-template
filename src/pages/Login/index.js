@@ -11,11 +11,16 @@ import {
 import {useSelector, useDispatch} from 'react-redux';
 
 import {ILApp} from '../../assets';
-import {fonts, darkMode, statusBarDark, buttonTextDark} from '../../utils';
+import {
+  fonts,
+  darkMode,
+  statusBarDark,
+  buttonTextDark,
+  showMessage,
+} from '../../utils';
 import {Button, TextInput, Gap, ButtonText, ButtonFlex} from '../../components';
 import {
   setFormLogin,
-  setClearForm,
   setIsCanvaser,
   setIsMarketer,
   setShowPassword,
@@ -34,14 +39,13 @@ const Login = ({navigation}) => {
 
   const sendData = () => {
     dispatch(setLoading(true));
-    navigation.navigate('MainApp');
     if (loginReducer.form.email && loginReducer.form.password) {
       const data = loginReducer.form;
       const type = loginReducer.isCanvaser ? 'Canvaser' : 'Marketer';
-      // dispatch(mitraLogin(type, data, navigation));
-      dispatch(setClearForm()); // bersihkan form
+      dispatch(mitraLogin(type, data, navigation));
     } else {
       console.log('Form wajib diisi');
+      showMessage('Form wajib diisi');
       dispatch(setLoading(false));
     }
   };
