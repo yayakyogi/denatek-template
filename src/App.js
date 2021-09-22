@@ -13,7 +13,7 @@ const MainApp = () => {
     <NavigationContainer>
       <Router />
       {isLoading && <Loading />}
-      <FlashMessage position="bottom" />
+      <FlashMessage position="Top" />
     </NavigationContainer>
   );
 };
