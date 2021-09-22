@@ -1,4 +1,4 @@
-import {API_HOST, queryString} from '../../utils';
+import {API_HOST, queryString, showMessage, storeData} from '../../utils';
 import {setLoading} from './mitraAction';
 
 // ubah value form login
@@ -40,14 +40,21 @@ export const mitraLogin = (type, data, navigation) => dispatch => {
             id: res.id,
             token: res.token,
           };
+          storeData(saveData);
+          dispatch(setClearForm());
+          navigation.replace('MainApp');
         } else {
           dispatch(setLoading(false));
+          dispatch(setClearForm());
           console.log(res.message);
+          showMessage(res.message);
         }
       })
       .catch(error => {
         dispatch(setLoading(false));
+        dispatch(setClearForm());
         console.log(error);
+        showMessage(error);
       });
   } else {
     fetch(`${API_HOST.url}/marketer/login?${queryString(data)}`, {
@@ -66,15 +73,21 @@ export const mitraLogin = (type, data, navigation) => dispatch => {
             id: res.id,
             token: res.token,
           };
-          dispatch(setClearForm()); // bersihkan form
+          storeData(saveData);
+          dispatch(setClearForm());
+          navigation.replace('MainApp');
         } else {
           dispatch(setLoading(false));
+          dispatch(setClearForm());
           console.log(res.message);
+          showMessage(res.message);
         }
       })
       .catch(error => {
         dispatch(setLoading(false));
+        dispatch(setClearForm());
         console.log(error);
+        showMessage(error);
       });
   }
 };
