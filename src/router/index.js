@@ -13,6 +13,7 @@ import {
   MitraSendReport,
   CanvaserVisitDetail,
   CanvaserAddMitra,
+  Try,
 } from '../pages';
 import {BottomTab} from '../components';
 import {colors, fonts} from '../utils';
@@ -40,7 +41,7 @@ const MainApp = () => {
 
 const Router = () => {
   return (
-    <Stack.Navigator initialRouteName="Splash">
+    <Stack.Navigator initialRouteName="Try">
       {/* halaman splash screen */}
       <Stack.Screen
         name="Splash"
@@ -114,6 +115,8 @@ const Router = () => {
           headerTitleStyle: {fontFamily: fonts.primary.SMB},
         }}
       />
+      {/* halaman try */}
+      <Stack.Screen name="Try" component={Try} />
     </Stack.Navigator>
   );
 };

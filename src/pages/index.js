@@ -7,6 +7,7 @@ import MitraCheckOut from './MitraCheckOut';
 import MitraSendReport from './MitraSendReport';
 import CanvaserVisitDetail from './CanvaserVisitDetail';
 import CanvaserAddMitra from './CanvaserAddMitra';
+import Try from './Try';
 
 export {
   Splash,
@@ -18,4 +19,5 @@ export {
   MitraSendReport,
   CanvaserVisitDetail,
   CanvaserAddMitra,
+  Try,
 };
