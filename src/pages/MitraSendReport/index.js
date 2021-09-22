@@ -22,7 +22,7 @@ const MitraSendReport = () => {
         titleLeft="Produk Terjual"
         iconLeft={ILProdukTerjual}
         onPressMenuLeft={() => {}}
-        titleRight="Produk Terjual"
+        titleRight="Produk Toko"
         iconRight={ILProdukToko}
         onPressMenuRight={() => {}}
       />
